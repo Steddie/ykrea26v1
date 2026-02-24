@@ -1,4 +1,6 @@
 import "./style.css";
+import { multiply } from "./math";
+import johansFriends from "./math";
 
 /**
  * 🥴
@@ -140,3 +142,8 @@ console.log(lengths);
 
 const fruitHtml = fruits.map(fruit => `<li>${fruit}</li>`);
 console.log(fruitHtml);
+
+/**
+ * Using imported variables
+ */
+console.log("42 * 1337 =", multiply(42, 1337));
