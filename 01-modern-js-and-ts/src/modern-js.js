@@ -42,3 +42,39 @@ console.log("(let) Outside if-statement:", total);
 
 // const msg = "Hello world!";
 // msg = "Good night!";  // Uncaught TypeError: invalid assignment to const 'msg'
+
+
+/**
+ * Function Declaration vs Function Expression
+ */
+
+// Function Declaration
+console.log("1 + 2 =", add(1, 2));  // Function Declarations are hoisted to the top of the scope
+function add(a, b) {
+	return a + b;
+}
+
+// Function Expression
+const addExpression = function (a, b) {
+	return a + b;
+}
+console.log("3 + 4 =", addExpression(3, 4));
+
+// Arrow Function Expression
+const addArrow = (a, b) => {
+	return a + b;
+}
+console.log("4 + 5 =", addArrow(4, 5));
+
+// Arrow function one-liner
+const addArrowOneliner = (a, b) => a + b;
+console.log("1332 + 5 =", addArrowOneliner(1332, 5));
+
+
+// Default values and template literals
+const sayHi = (name, time = "day") => {
+	return `Good ${time}, ${name}!`;
+	return "Good " + time + ", " + name + "!";
+}
+console.log(sayHi("YKREA26V1", "evening"));
+console.log(sayHi("YKREA26V1"));
