@@ -78,3 +78,65 @@ const sayHi = (name, time = "day") => {
 }
 console.log(sayHi("YKREA26V1", "evening"));
 console.log(sayHi("YKREA26V1"));
+
+/**
+ * Destructuring
+ */
+
+const person = {
+	firstName: "Alex",
+	lastName: "Andersson",
+	age: 30
+}
+
+// Object destructuring
+// console.log("first name:", person.firstName);
+const { firstName, age } = person;
+console.log("first name:", firstName);
+
+// Array destructuring
+const numbers = [10, 20, 30];
+const [ num1, num2 ] = numbers;
+console.log(num1, num2);
+
+
+/**
+ * Spread/rest
+ */
+
+// Spread - create a new object/array
+/*
+const alsoNumbers = numbers;
+alsoNumbers.push(40);
+console.log("numbers:", numbers);
+console.log("alsoNumbers:", alsoNumbers);
+console.log("numbers === alsoNumbers", numbers === alsoNumbers);
+*/
+const alsoNumbers = [ ...numbers ];
+alsoNumbers.push(1337);
+console.log("numbers:", numbers);
+console.log("alsoNumbers:", alsoNumbers);
+console.log("numbers === alsoNumbers", numbers === alsoNumbers);
+
+const alexClone = { ...person };
+alexClone.firstName = "Kalle";
+console.log("Alex:", person);
+console.log("Alex clone:", alexClone);
+
+/**
+ * Array methods
+ */
+
+const fruits = ["apple", "banana", "pear"];
+
+fruits.forEach((fruit) => {
+	console.log(fruit.toUpperCase());
+});
+
+const lengths = fruits.map((fruit) => {
+	return fruit.length;
+});
+console.log(lengths);
+
+const fruitHtml = fruits.map(fruit => `<li>${fruit}</li>`);
+console.log(fruitHtml);
