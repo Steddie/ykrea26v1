@@ -147,3 +147,43 @@ console.log(fruitHtml);
  * Using imported variables
  */
 console.log("42 * 1337 =", multiply(42, 1337));
+
+
+/**
+ * Promises 🤞🏻
+ */
+
+console.log("Fetch a todo with a Promise...");
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+	.then(response => {
+		if (!response.ok) {
+			throw new Error("Response was not ok 😭😭😭😭");
+		}
+		return response.json();
+	})
+	.then(data => {
+		console.log("✅ Got me sum data, yum! 😋", data);
+	})
+	.catch(err => {
+		// Shit happened
+		console.error("🚨 Shit hit the fan 🪭", err);
+	});
+
+// async/await
+const getTodos = async () => {
+	try {
+		console.log("Fetch a todo with async/await");
+		const response = await fetch("https://jsonplaceholder.typicode.com/todoszzzzzzz/3");
+
+		if (!response.ok) {
+			throw new Error("Response was not ok 😭😭😭😭");
+		}
+		const data = await response.json();
+		console.log("✅ Got me sum async/await data, yum! 😋", data);
+
+	} catch (err) {
+		console.error("🚨 async shit hit the fan 🪭", err);
+	}
+}
+getTodos();
