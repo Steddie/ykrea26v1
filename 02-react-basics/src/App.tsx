@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./assets/scss/App.scss";
+import Counter from "./components/Counter";
 
 interface Post {
 	id: number;
@@ -9,7 +10,6 @@ interface Post {
 
 function App() {
 	// let counter = 0;  // stateless
-	const [counter, setCounter] = useState(0);
 	const [msg, setMsg] = useState("Hi mom!");
 	const [posts, setPosts] = useState<Post[]>([
 		{ id: 1, title: "React Rocks 🎸!", likes: 1337 },
@@ -18,18 +18,6 @@ function App() {
 	]);
 	const [salary, setSalary] = useState(10);
 	const [showSalary, setShowSalary] = useState(false);
-
-	const handleBtnClick = () => {
-		console.log("Counter before updates:", counter);  // 0
-
-		setCounter( (prevValue) => prevValue + 1 );  // prevValue = 0, return 1
-
-		console.log("Counter between updates:", counter);  // 0
-
-		setCounter( (prevValue) => prevValue + 1 );  // prevValue = 1, return 2
-
-		console.log("Counter after updates:", counter);  // 0
-	}
 
 	const handleChangeSalary = (amount: number) => {
 		if (salary + amount < 5) {
@@ -40,15 +28,17 @@ function App() {
 		setSalary(salary + amount);
 	}
 
-	console.log("App is rendering, counter is:", counter);
+	console.log("App is rendering...");
 
 	return (
 		<div className="container py-2">
 			<h1>02-react-basics</h1>
 
-			<p>Counter: {counter}</p>
+			<h2>Counters</h2>
 
-			<button className="btn btn-primary" onClick={handleBtnClick}>Click me!</button>
+			<Counter />
+
+			<Counter />
 
 			<hr />
 
