@@ -1,10 +1,21 @@
 import { useState } from "react";
 import "./assets/scss/App.scss";
 
+interface Post {
+	id: number;
+	title: string;
+	likes: number;
+}
+
 function App() {
 	// let counter = 0;  // stateless
 	const [counter, setCounter] = useState(0);
 	const [msg, setMsg] = useState("Hi mom!");
+	const [posts, setPosts] = useState<Post[]>([
+		{ id: 1, title: "React Rocks 🎸!", likes: 1337 },
+		{ id: 2, title: "JSX Rocks Even Moar 🤘🏻!", likes: 42 },
+		{ id: 3, title: "Got state? 🚓", likes: 3 },
+	]);
 
 	const handleBtnClick = () => {
 		console.log("Stop it, that tickles!");
@@ -30,6 +41,14 @@ function App() {
 			<p>{msg}</p>
 
 			<button className="btn btn-warning" onClick={ () => setMsg("Hi dad!") }>Hi dad?</button>
+
+			<hr />
+
+			<ul>
+				{posts.map(post =>
+					<li key={post.id}>{post.title} ({post.likes} likes)</li>
+				)}
+			</ul>
 		</div>
 	);
 }
