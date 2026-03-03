@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./assets/scss/App.scss";
 
 function App() {
 	// let counter = 0;  // stateless
@@ -17,13 +17,13 @@ function App() {
 	console.log("App is rendering, counter is:", counter);
 
 	return (
-		<>
+		<div className="container py-2">
 			<h1>02-react-basics</h1>
 
 			<p>Counter: {counter}</p>
 
-			<button onClick={handleBtnClick}>Click me!</button>
-		</>
+			<button className="btn btn-primary" onClick={handleBtnClick}>Click me!</button>
+		</div>
 	);
 }
 
