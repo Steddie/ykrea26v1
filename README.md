@@ -19,3 +19,10 @@ cd 01-intro
 ```
 
 osv.
+
+För att köra varje lektion, börja med att;
+
+ 1. Hämta hem senaste lektionen
+ 2. Gå in i den senast hämtade mappen
+ 3. Kör 'npm install'
+ 4. Kör 'npm run dev'
