@@ -55,13 +55,13 @@ function App() {
 			<div className="buttons">
 				<div className="mb-1">
 					<button
-						className="btn btn-primary btn-lg"
+						className="btn btn-primary btn-sm ms-1"
 						onClick={() => handleSalaryChange(1)}
 					>
 						Raise 1 &euro; 🤑
 					</button>
 					<button
-						className="btn btn-warning btn-lg"
+						className="btn btn-warning btn-sm ms-1"
 						onClick={() => handleSalaryChange(-1)}
 						disabled={salary === 5}
 					>
@@ -71,13 +71,13 @@ function App() {
 
 				<div className="mb-1">
 					<button
-						className="btn btn-primary btn-lg"
+						className="btn btn-primary btn-sm ms-1"
 						onClick={ () => handleSalaryChange(5) }
 					>
 						Raise 5 &euro; 🤑🤑🤑
 					</button>
 					<button
-						className="btn btn-warning btn-lg"
+						className="btn btn-warning btn-sm ms-1"
 						onClick={ () => handleSalaryChange(-5) }
 						disabled={salary < 10}
 					>

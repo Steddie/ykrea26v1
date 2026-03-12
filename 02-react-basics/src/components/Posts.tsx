@@ -15,22 +15,17 @@ function Posts() {
 		{ id: 3, title: "Got state? 🚓", likes: 3 },
 	]);
 
-	const handleLikePost = (postId: number) => {
-		// create a new array of posts with the updated likes for the liked post
-		const updatedPosts = posts.map(post =>
-			post.id === postId ? { ...post, likes: post.likes + 1 } : post
-		);
-
-		// update the state with the new array of posts
-		setPosts(updatedPosts);
+	const handleLikePost = (post: Post) => {
+		post.likes++;
+		setPosts([...posts]);
 	}
 
-	const handleDeletePost = (postId: number) => {
+	const handleDeletePost = (postToDelete: Post) => {
 		// create a new array of posts without the deleted post
-		const updatedPosts = posts.filter(post => post.id !== postId);
+		const postsToKeep = posts.filter(post => post.id !== postToDelete.id);
 
 		// update the state with the new array of posts
-		setPosts(updatedPosts);
+		setPosts(postsToKeep);
 	}
 
 	const handleAddPost = (title: string) => {
@@ -54,17 +49,21 @@ function Posts() {
 
 			{posts.length === 0 && <p>No posts available.</p>}
 			{posts.length > 0 &&
-				<>
-					<ul>
-						{posts.map(post =>
-							<li key={post.id} className="mb-1">
-								{post.title} ({post.likes} likes)
-								<button className="btn btn-primary btn-sm m-1" onClick={() => handleLikePost(post.id)}>❤️ Like</button>
-								<button className="btn btn-danger btn-sm m-1" onClick={() => handleDeletePost(post.id)}>🗑️ Delete</button>
-							</li>
-						)}
-					</ul>
-				</>
+				<ul>
+					{posts.map(post =>
+						<li key={post.id} className="mb-1">
+							{post.title} ({post.likes} likes)
+							<button
+								className="btn btn-primary btn-sm ms-1"
+								onClick={() => handleLikePost(post)}
+								>❤️</button>
+							<button
+								className="btn btn-danger btn-sm ms-1"
+								onClick={() => handleDeletePost(post)}
+								>🗑️</button>
+						</li>
+					)}
+				</ul>
 			}
 			<div className="add-post">
 				<input type="text" placeholder="Post title" id="new-post-title" className="form-control" />
