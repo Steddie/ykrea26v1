@@ -8,7 +8,7 @@ interface Post {
 
 function Posts() {
 	const inputPostTitleRef = useRef<HTMLInputElement>(null);
-
+	const [inputTitle, setInputTitle] = useState("");
 	const [posts, setPosts] = useState<Post[]>([
 		{ id: 1, title: "React Rocks 🎸!", likes: 1337 },
 		{ id: 2, title: "JSX Rocks Even Moar 🤘🏻!", likes: 42 },
@@ -43,15 +43,10 @@ function Posts() {
 	const handleFormSubmit = (e: React.SubmitEvent) => {
 		e.preventDefault();
 
-		if (!inputPostTitleRef.current) {
-			return;
-		}
-
-		const input = inputPostTitleRef.current;
-		const title = input.value.trim();
+		const title = inputTitle.trim();
 		if(title) {
 			handleAddPost(title);
-			input.value = "";
+			setInputTitle("");
 		}
 	}
 
@@ -83,7 +78,8 @@ function Posts() {
 						aria-label="Post title"
 						placeholder="Post title"
 						type="text"
-						ref={inputPostTitleRef}
+						value={inputTitle}
+						onChange={e => setInputTitle(e.target.value)}
 						className="form-control"
 						required
 					/>
