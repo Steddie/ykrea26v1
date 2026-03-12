@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 interface Post {
 	id: number;
@@ -7,7 +7,7 @@ interface Post {
 }
 
 function Posts() {
-	const [idcounter, setIdCounter] = useState(3);
+	const inputPostTitleRef = useRef<HTMLInputElement>(null);
 
 	const [posts, setPosts] = useState<Post[]>([
 		{ id: 1, title: "React Rocks 🎸!", likes: 1337 },
@@ -29,20 +29,32 @@ function Posts() {
 	}
 
 	const handleAddPost = (title: string) => {
+
 		// create a new post object
 		const newPost: Post = {
-			id: idcounter + 1,
+			id: Math.max(0, ...(posts.map(post => post.id))) + 1,
 			title,
 			likes: 0,
 		};
-		setIdCounter(idcounter + 1);
-
-		// create a new array of posts with the new post added
-		const updatedPosts = [...posts, newPost];
-
 		// update the state with the new array of posts
-		setPosts(updatedPosts);
+		setPosts([...posts, newPost]);
 	}
+
+	const handleFormSubmit = (e: React.SubmitEvent) => {
+		e.preventDefault();
+
+		if (!inputPostTitleRef.current) {
+			return;
+		}
+
+		const input = inputPostTitleRef.current;
+		const title = input.value.trim();
+		if(title) {
+			handleAddPost(title);
+			input.value = "";
+		}
+	}
+
 	return (
 		<>
 			<h2>Posts</h2>
@@ -65,18 +77,16 @@ function Posts() {
 					)}
 				</ul>
 			}
-			<form onSubmit={(e) => {
-						e.preventDefault();
-
-						const input = document.getElementById("new-post-title") as HTMLInputElement;
-						const title = input.value.trim();
-						if(title) {
-							handleAddPost(title);
-							input.value = "";
-						}
-					}}>
+			<form onSubmit={handleFormSubmit}>
 				<div className="add-post input-group mb-3">
-					<input aria-label="Post title" type="text" id="new-post-title" className="form-control" required />
+					<input
+						aria-label="Post title"
+						placeholder="Post title"
+						type="text"
+						ref={inputPostTitleRef}
+						className="form-control"
+						required
+					/>
 					<button className="btn btn-success" type="submit">Add Post</button>
 
 				</div>
