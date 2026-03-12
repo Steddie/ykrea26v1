@@ -54,7 +54,7 @@ function Posts() {
 						<li key={post.id} className="mb-1">
 							{post.title} ({post.likes} likes)
 							<button
-								className="btn btn-primary btn-sm ms-1"
+								className="btn btn-success btn-sm ms-1"
 								onClick={() => handleLikePost(post)}
 								>❤️</button>
 							<button
@@ -65,17 +65,22 @@ function Posts() {
 					)}
 				</ul>
 			}
-			<div className="add-post">
-				<input type="text" placeholder="Post title" id="new-post-title" className="form-control" />
-				<button className="btn btn-success mt-2" onClick={() => {
-					const input = document.getElementById("new-post-title") as HTMLInputElement;
-					const title = input.value.trim();
-					if(title) {
-						handleAddPost(title);
-						input.value = "";
-					}
-				}}>Add Post</button>
-			</div>
+			<form onSubmit={(e) => {
+						e.preventDefault();
+
+						const input = document.getElementById("new-post-title") as HTMLInputElement;
+						const title = input.value.trim();
+						if(title) {
+							handleAddPost(title);
+							input.value = "";
+						}
+					}}>
+				<div className="add-post input-group mb-3">
+					<input aria-label="Post title" type="text" id="new-post-title" className="form-control" required />
+					<button className="btn btn-success" type="submit">Add Post</button>
+
+				</div>
+			</form>
 		</>
 	)
 
